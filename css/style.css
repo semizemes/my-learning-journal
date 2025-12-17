@@ -1,5 +1,89 @@
-html, 
+html,
 body {
     margin: 0;
-    padding: 0;
+    font-family: Roboto;
+    background-color: bisque;
+}
+
+header,
+main,
+footer {
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 414px;
+}
+
+header,
+footer {
+    padding: 1.25rem;
+}
+
+/* Header */
+
+header,
+.head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+header {
+    justify-content: space-around;
+}
+
+header img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 0.8rem;
+    margin-left: 1.2rem;
+}
+
+h1 {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 13.55px;
+    line-height: 108%;
+    letter-spacing: -3%;
+}
+
+.hero-post {
+    background: no-repeat bottom url(../images/img1.png);
+    background-size: cover;
+    padding: 0 1.25rem;
+    padding-top: 5rem;
+    color: #fff;
+    padding-bottom: 1.5rem;
+}
+
+.hero-post p {
+    margin: 0;
+    font-family: Source Sans Pro;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+
+.hero-post h2 {
+    font-family: Source Sans Pro;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 2rem;
+    line-height: 108%;
+    letter-spacing: -3%;
+
+}
+
+.hero-post-date {
+    font-size: 0.75rem;
 }
