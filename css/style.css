@@ -2,7 +2,6 @@ html,
 body {
     margin: 0;
     font-family: Roboto;
-    background-color: bisque;
 }
 
 header,
@@ -106,18 +105,43 @@ button {
     text-decoration-thickness: 0%;
 }
 
-footer{
+footer {
     background: #202020;
     text-align: center;
 }
 
-footer h2, footer p{
+footer h2,
+footer p {
     font-size: 0.75rem;
     color: #fff;
     margin: 0;
 }
 
-footer p{
+footer p {
     margin-top: 3px;
     color: #D7D7D7;
+}
+
+@media (min-width: 415px) {
+
+    header,
+    main,
+    footer {
+        box-sizing: border-box;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    header {
+        position: sticky;
+        top: 0px;
+    }
+
+    main {
+        /* margin-top: 2rem; */
+    }
+
+    .hero-post {
+        height: 30.5rem;
+    }
 }
