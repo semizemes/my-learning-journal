@@ -6,6 +6,7 @@ const moreBtn = document.getElementById("more-btn");
 const main = document.getElementById("main");
 
 let initialMainHtml = "";
+console.log(initialMainHtml);
 let postCount = 3;
 
 function renderHomePosts(postCount) {
@@ -23,7 +24,8 @@ function renderHomePosts(postCount) {
   }
 
   posts.innerHTML = htmlArray;
-  return htmlArray
+  initialMainHtml = main.innerHTML;
+  // return htmlArray;
 }
 
 renderHomePosts(postCount);
@@ -42,19 +44,17 @@ moreBtn.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-  console.log(e.target.parentElement.dataset.postId);
-  // console.log(e.target.parentNode.parentElement)
   if (e.target.parentElement.dataset.postId) {
     renderSinglePost(e.target.parentElement.dataset.postId);
   }
 
-  
+  if (e.target.id == "home") {
+    homePage();
+  }
 });
 
 function renderSinglePost(postId) {
-  let post = postsJSON.find(({id}) => (id == postId));
-
-  console.log(post.image);
+  let post = postsJSON.find(({ id }) => id == postId);
 
   let paragraphs = post.paragraphs.map((paragraph) => {
     return `
@@ -63,13 +63,21 @@ function renderSinglePost(postId) {
         `;
   });
 
-    main.innerHTML = `
+  main.innerHTML = `
           <p>${post.time}</p>
           <h2>${post.title}</h2>
           <p>${post.headerText}</p>
-          <img class="home-img" src="${post.image}" alt="${post.headerText} image">
+          <img 
+          class="home-img" 
+          src="${post.image}" 
+          alt="${post.headerText} image"
+          >
           ${paragraphs.join(" ")}
           <h3>Recent Posts</h3>
-          ${renderHomePosts(postCount)}
+          <div class="posts" id="posts"></div>
       `;
+}
+
+function homePage() {
+  main.innerHTML = initialMainHtml;
 }
