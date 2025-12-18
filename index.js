@@ -2,23 +2,38 @@ import { posts as postsJSON } from "./posts";
 console.log(postsJSON);
 
 const posts = document.getElementById("posts");
+const moreBtn = document.getElementById("more-btn");
 
-const htmlArray = postsJSON.map((post) => {
-  // const paragraphsArray = post.paragraphs.map(paragraph => {
-  //     return `
-  //         <h3>${paragraph.paragraphTitle}</h3>
-  //         <p>${paragraph.paragraphText}</p>
-  //     `
-  // })
+let postCount = 3;
 
-  return `
-        <div>
-            <img class="home-img" src="./${post.image}" alt="${post.title} image">
-            <p>${post.time}</p>
-            <h2>${post.title}</h2>
-            <p>${post.headerText}</p>
-        </div>
-    `;
+function renderHomePosts(postCount) {
+  let htmlArray = "";
+
+  for (let i = 0; i < postCount; i++) {
+    htmlArray += `
+            <div>
+                <img class="home-img" src="./${postsJSON[i].image}" alt="${postsJSON[i].title} image">
+                <p>${postsJSON[i].time}</p>
+                <h2>${postsJSON[i].title}</h2>
+                <p>${postsJSON[i].headerText}</p>
+            </div>
+        `;
+  }
+
+  posts.innerHTML = htmlArray;
+}
+
+renderHomePosts(postCount);
+
+moreBtn.addEventListener("click", (e) => {
+  if (postsJSON.length > postCount) {
+    postCount += 3;
+  }
+  if (postsJSON.length < postCount) {
+    postCount = postsJSON.length;
+  }
+
+  console.log(postCount);
+
+  renderHomePosts(postCount);
 });
-
-posts.innerHTML = htmlArray.join(" ");
