@@ -1,7 +1,7 @@
 export const posts = [
   {
     id: 1,
-    image: "images/img1.png",
+    image: "images/img1.jpg",
     time: "2025-01-05 21:30",
     title: "Starting My Learning Journal",
     headerText: "Documenting my journey as a software engineering student",
