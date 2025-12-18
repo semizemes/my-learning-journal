@@ -3,7 +3,9 @@ import { posts as postsJSON } from "./posts";
 
 const posts = document.getElementById("posts");
 const moreBtn = document.getElementById("more-btn");
+const main = document.getElementById("main");
 
+let initialMainHtml = "";
 let postCount = 3;
 
 function renderHomePosts(postCount) {
@@ -21,6 +23,7 @@ function renderHomePosts(postCount) {
   }
 
   posts.innerHTML = htmlArray;
+  return htmlArray
 }
 
 renderHomePosts(postCount);
@@ -41,14 +44,17 @@ moreBtn.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   console.log(e.target.parentElement.dataset.postId);
   // console.log(e.target.parentNode.parentElement)
+  if (e.target.parentElement.dataset.postId) {
+    renderSinglePost(e.target.parentElement.dataset.postId);
+  }
 
-  renderSinglePost(e.target.parentElement.dataset.postId);
+  
 });
 
 function renderSinglePost(postId) {
-  let post = postsJSON.find((i) => (i.id = postId));
+  let post = postsJSON.find(({id}) => (id == postId));
 
-  console.log(post);
+  console.log(post.image);
 
   let paragraphs = post.paragraphs.map((paragraph) => {
     return `
@@ -57,13 +63,13 @@ function renderSinglePost(postId) {
         `;
   });
 
-  console.log(paragraphs);
-
-  document.getElementById("main").innerHTML = `
-        <p>${post.time}</p>
-        <h2>${post.title}</h2>
-        <p>${post.headerText}</p>
-        <img class="home-img" src="${post.image}" alt="${post.headerText} image">
-        ${paragraphs}
-    `;
+    main.innerHTML = `
+          <p>${post.time}</p>
+          <h2>${post.title}</h2>
+          <p>${post.headerText}</p>
+          <img class="home-img" src="${post.image}" alt="${post.headerText} image">
+          ${paragraphs.join(" ")}
+          <h3>Recent Posts</h3>
+          ${renderHomePosts(postCount)}
+      `;
 }
