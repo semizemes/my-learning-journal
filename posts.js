@@ -1,7 +1,7 @@
-const posts = [
+export const posts = [
   {
     id: 1,
-    image: "images/img1.jpg",
+    image: "images/img1.png",
     time: "2025-01-05 21:30",
     title: "Starting My Learning Journal",
     headerText: "Documenting my journey as a software engineering student",
@@ -250,4 +250,3 @@ const posts = [
   }
 ];
 
-export default posts;
