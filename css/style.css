@@ -4,13 +4,11 @@ body {
     font-family: Roboto;
 }
 
-body{
-    height: ma;
-}
-
 header,
 main,
-footer {
+footer,
+.about,
+.single-post {
     box-sizing: border-box;
     margin: 0 auto;
     width: 414px;
@@ -18,7 +16,9 @@ footer {
 }
 
 header,
-footer {
+footer, 
+.about,
+.single-post {
     padding: 1.25rem;
 }
 
@@ -128,21 +128,21 @@ footer p {
     color: #D7D7D7;
 }
 
-.posts{
+.posts {
     padding: 1.25rem;
 }
 
-.home-img{
+.home-img {
     width: 100%;
     height: 14.5rem;
     object-fit: cover;
 }
 
-.about{
+.about {
     display: none;
 }
 
-.my-image{
+.my-image {
     border-radius: 50%;
     width: 30vw;
 }
@@ -151,7 +151,9 @@ footer p {
 
     header,
     main,
-    footer {
+    footer,
+    .about,
+    .single-post {
         box-sizing: border-box;
         margin: 0 auto;
         width: 100%;
@@ -162,7 +164,7 @@ footer p {
         top: 0px;
     }
 
-    .hero-img{
+    .hero-img {
         height: 40vh;
     }
 
@@ -171,22 +173,22 @@ footer p {
     }
 
     .hero-post {
-        height: 20vh;
-        background: center url(../images/img1.png); 
+        height: 30vh;
+        background: center url(../images/img1.png);
         background-size: cover;
     }
 }
 
 @media (min-width: 600px) {
-    .posts{
+    .posts {
         display: grid;
-        grid-template-columns: 1fr 1fr ;
+        grid-template-columns: 1fr 1fr;
         grid-gap: 1rem;
     }
 }
 
 @media (min-width: 850px) {
-    .posts{
+    .posts {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 1rem;
