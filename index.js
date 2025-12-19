@@ -1,4 +1,4 @@
-import { posts as postsJSON } from "./posts";
+import { posts as postsJSON } from "./posts.js";
 
 const posts = document.getElementById("posts");
 const main = document.getElementById("main");
