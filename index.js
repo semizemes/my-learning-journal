@@ -1,10 +1,9 @@
 import { posts as postsJSON } from "./posts";
-// console.log(postsJSON);
 
 const posts = document.getElementById("posts");
-const moreBtn = document.getElementById("more-btn");
 const main = document.getElementById("main");
-const singlePost = document.getElementById("single-post")
+const singlePost = document.getElementById("single-post");
+const about = document.getElementById("about");
 
 let initialMainHtml = "";
 let postCount = 3;
@@ -26,7 +25,6 @@ function renderHomePosts(postCount) {
 
   posts.innerHTML = htmlArray;
   initialMainHtml = main.innerHTML;
-  console.log("functions is working")
 }
 
 document.addEventListener("click", (e) => {
@@ -34,32 +32,34 @@ document.addEventListener("click", (e) => {
     renderSinglePost(e.target.parentElement.dataset.postId);
     window.scrollTo({
       top: 15,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
 
   if (e.target.id == "home") {
     homePage();
   }
 
+  if(e.target.id == "about-me"){
+    aboutMePage()
+  }
+
   if (e.target.id == "more-btn") {
-    console.log("btn ");
     if (postsJSON.length > postCount) {
       postCount += 3;
     }
     if (postsJSON.length < postCount) {
       postCount = postsJSON.length;
     }
-    console.log(postCount);
-  renderHomePosts(postCount)
-
+    renderHomePosts(postCount);
   }
 });
 
 function renderSinglePost(postId) {
   let post = postsJSON.find(({ id }) => id == postId);
   main.style.display = "none";
-  singlePost.style.display = "block"
+  singlePost.style.display = "block";
+  about.style.display = "none";
 
   let paragraphs = post.paragraphs.map((paragraph) => {
     return `
@@ -85,6 +85,17 @@ function renderSinglePost(postId) {
 }
 
 function homePage() {
-  main.style.display = "block"
-  singlePost.style.display = "none"
+  main.style.display = "block";
+  singlePost.style.display = "none";
+  about.style.display = "none";
+}
+
+function aboutMePage() {
+  about.style.display = "block";
+  main.style.display = "none";
+  singlePost.style.display = "block";
+
+  let postsHtml = posts.innerHTML;
+
+  about.innerHTML += `<div class="posts" id="posts">${postsHtml}</div>`;
 }

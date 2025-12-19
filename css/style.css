@@ -138,6 +138,15 @@ footer p {
     object-fit: cover;
 }
 
+.about{
+    display: none;
+}
+
+.my-image{
+    border-radius: 50%;
+    width: 30vw;
+}
+
 @media (min-width: 415px) {
 
     header,
@@ -166,12 +175,6 @@ footer p {
         background: center url(../images/img1.png); 
         background-size: cover;
     }
-
-    /* .posts{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 1rem;
-    } */
 }
 
 @media (min-width: 600px) {
