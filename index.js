@@ -4,10 +4,11 @@ import { posts as postsJSON } from "./posts";
 const posts = document.getElementById("posts");
 const moreBtn = document.getElementById("more-btn");
 const main = document.getElementById("main");
+const singlePost = document.getElementById("single-post")
 
 let initialMainHtml = "";
-console.log(initialMainHtml);
 let postCount = 3;
+renderHomePosts(postCount);
 
 function renderHomePosts(postCount) {
   let htmlArray = "";
@@ -25,36 +26,40 @@ function renderHomePosts(postCount) {
 
   posts.innerHTML = htmlArray;
   initialMainHtml = main.innerHTML;
-  // return htmlArray;
+  console.log("functions is working")
 }
-
-renderHomePosts(postCount);
-
-moreBtn.addEventListener("click", (e) => {
-  if (postsJSON.length > postCount) {
-    postCount += 3;
-  }
-  if (postsJSON.length < postCount) {
-    postCount = postsJSON.length;
-  }
-
-  console.log(postCount);
-
-  renderHomePosts(postCount);
-});
 
 document.addEventListener("click", (e) => {
   if (e.target.parentElement.dataset.postId) {
     renderSinglePost(e.target.parentElement.dataset.postId);
+    window.scrollTo({
+      top: 15,
+      behavior: "smooth"
+    })
   }
 
   if (e.target.id == "home") {
     homePage();
   }
+
+  if (e.target.id == "more-btn") {
+    console.log("btn ");
+    if (postsJSON.length > postCount) {
+      postCount += 3;
+    }
+    if (postsJSON.length < postCount) {
+      postCount = postsJSON.length;
+    }
+    console.log(postCount);
+  renderHomePosts(postCount)
+
+  }
 });
 
 function renderSinglePost(postId) {
   let post = postsJSON.find(({ id }) => id == postId);
+  main.style.display = "none";
+  singlePost.style.display = "block"
 
   let paragraphs = post.paragraphs.map((paragraph) => {
     return `
@@ -63,7 +68,8 @@ function renderSinglePost(postId) {
         `;
   });
 
-  main.innerHTML = `
+  let postsHtml = posts.innerHTML;
+  singlePost.innerHTML = `
           <p>${post.time}</p>
           <h2>${post.title}</h2>
           <p>${post.headerText}</p>
@@ -74,10 +80,11 @@ function renderSinglePost(postId) {
           >
           ${paragraphs.join(" ")}
           <h3>Recent Posts</h3>
-          <div class="posts" id="posts"></div>
+          <div class="posts" id="posts">${postsHtml}</div>
       `;
 }
 
 function homePage() {
-  main.innerHTML = initialMainHtml;
+  main.style.display = "block"
+  singlePost.style.display = "none"
 }
